@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title id="title"></title>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<link rel="shortcut icon" type="image/png" href="img/logo2.png"/>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+	
+	<script type="text/javascript" src="md5.js"></script>
+	<script type="text/javascript">
+	
+	    function doLogin() {
+		document.sendin.username.value = document.login.username.value;
+		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+		document.sendin.submit();
+		return false;
+	    }
+	</script>
+$(endif)
+
+<div class="container transisi">
+		<div class="header">
+			<img src="img/logo2.png" alt="" style="border-radius: 2px" height="50%" width="50">
+			<div class="head-nav">
+			
+			<a id="tblmdl">Cara Pakai</a>
+			<a href="login.html">Ind</a>
+			
+			</div>
+		</div>
+		<div class="notif">
+		<div class="txtjln">
+		<marquee direction="right">Selamat datang di Paya.net, nikmati layanan internet sepuasnya, Unlimited tanpa batasan kuota dengan harga terjangkau</marquee>
+		 </div>
+		 <div class="ntf">
+		
+		 <span>|&nbsp;Notifikasi:</span><marquee direction="left">Silahkan tekan membeli voucher untuk koneksi lainnya<span></span></marquee>
+		 
+		 </div>
+		</div>
+		<div class ="main">
+			<div class="atas">
+					<img src="img/banner2.jpg" alt="" style="border-radius: 5px" height="100%" width="100%">
+				</div>
+			<div class="kanan">
+				<div class="login-content">
+					<form class="form-login" name="login" action="$(link-login-only)" method="post" 
+					$(if chap-id) onSubmit="return doLogin()" $(endif)>
+					<input type="hidden" name="dst" value="$(link-orig)" />
+					<input type="hidden" name="popup" value="true" />
+					<h4>Login Paya.net HOSPOT</h4>
+					<div class="beli">Belum punya paket ?<a href="harga.html"> Beli paket disini!</a></div>
+					<div style="margin:40px"></div>
+						<div class="input-div one">
+						   <div class="transisi">
+								<h5 id="usern">Voucher</h5>
+								<input type="text" class="input" id="username" autocomplete="off" name="username" value="$(username)" placeholder="98xxx atau xxxx@violet" required>
+						   </div>
+						</div>
+						<div class="input-div pass" id="passw">
+						   <div class="div">
+								<h5 id="pwd" style="display:none;" class="transisi">Password</h5>
+								<input class="input transisi" id="password" autocomplete="off" name="password" label="false" required="required" type="hidden" placeholder="***">
+						   </div>
+						</div>
+						<div style="margin:50px"></div>
+						<center><input type="submit" class="btn" value="LOGIN"></center>
+					</form>
+					<center style="padding:45.6px 20px" id="ctr">
+					<div class="beli" style="font-weight: bold; margin-bottom:5px;">Atau login dengan:</div>
+					<input type="button" class="btnctr" value="Voucher" onclick="voucher();">
+					<input type="button" class="btnctr" value="Member" onclick="member();">
+					$(if trial == 'yes')
+					<a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)" data-toggle="tooltip"data-placement="top">
+					<input type="button" class="btnctr" value="Geratis"></a></center>
+					$(endif)
+				</div>
+			</div>
+			<div class="kiri">
+				<img src="img/banner2.jpg" alt="" style="border-radius: 5px" height="100%" width="100%">
+			</div>
+			<div class="bawah">
+				<div class="ttg"><h3>Tentang Hotspot!</h3></div>
+				<p style="text-align: justify; font-size:12px; margin:5px; padding:13px;">Paya.net HOSPOT merupakan Penyedia Layanan Internet Unlimited dengan harga terjangkau, 
+				memberikan solusi terbaik untuk anda mendapatkan koneksi internet yang cepat dan stabil serta. Semua paket 
+				internet yang kami sediakan Unlimited Tanpa Batasan Quota bisa digunakan sepuasnya 1x24 Jam.</p>
+			</div>
+		</div>
+		<div class="footer">
+			<center><i>Copyright © 2023</i>
+			<i>Paya.net</i></center>
+			<!-- Tolong jangan dihilangkan bagian ini, dibuat oleh Sobur Sobari © 2021 -->
+		</div>
+		<!-- Modal Structure -->
+		<div id="mymodal" class="penghalang transisi">
+			<div class="modal-content">
+				<span id="tutup">&times;</span>
+				<p>Pastikan area anda tercover dengan signal wifi kami.
+					Akfitkan wireless pada smartphone atau laptop anda dan koneksikan dengan SSID hotspot kami.
+					Tunggu beberapa saat sampai pop-up notifikasi untuk login muncul, 
+					Setelah anda berhasil masuk ke halaman login silakan aktivasi ID VOUCHER dan klik Login.</p>
+			</div>
+     </div>
+	</div>
+<script>
+	var modal =document.getElementById("mymodal");
+	var tblmdl =document.getElementById("tblmdl");
+	var tutup =document.getElementById("tutup");
+	tblmdl.onclick= function(){
+		modal.style.display="block";
+	}
+	tutup.onclick= function(){
+		modal.style.display="none";
+	}
+	window.onclick= function(e){
+		if (e.target==modal){
+			modal.style.display="none";
+		}
+		
+	}
+</script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+	document.getElementById('title').innerHTML = window.location.hostname + " Login";
+</script>
+<script type="text/javascript">
+username.value=""
+	  //auto pass by username-->
+		function setpass(){
+		  var user = username.value		
+		  password.value = user;
+		}
+			
+		username.onkeyup = setpass;
+		
+	function voucher(){
+	var ctr=document.getElementById("ctr");
+	var pwd=document.getElementById("pwd");
+	var usern=document.getElementById("usern");
+		usern.innerHTML="Voucher";
+		pwd.style.display="none";
+		ctr.style.padding="45.6px 20px";
+		username.focus();
+		password.type = "hidden";
+		password.value = username.value;
+		username.onkeyup = setpass;	  
+	
+	}
+
+	// change to member mode
+	function member(){
+	var ctr=document.getElementById("ctr");
+	var pwd=document.getElementById("pwd");
+	var usern=document.getElementById("usern");
+		usern.innerHTML="Username";
+		pwd.style.display="";
+		ctr.style.padding="20px";
+		username.focus();
+		username.onkeyup = "";
+		password.type= "Password";
+		password.value = "";
+	}
+</script>
+
+
+
+</body>
+</html>
